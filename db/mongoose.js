@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
-const { error } = require("console");
+
 
 const envFilePath = path.resolve(__dirname,"../../.env");
 
