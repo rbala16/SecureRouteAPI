@@ -21,6 +21,11 @@ const Customer = mongoose.model("Customer",{
             }
         },
     },
+    location: {
+        type: String,
+        required: true,
+        trim: true,
+      },
 
 });
 

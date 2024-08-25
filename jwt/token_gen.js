@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
 //define secret key for signing the token
 const client_secret = "abc-store-api";
