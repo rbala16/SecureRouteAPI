@@ -29,3 +29,24 @@ const authenticateToken = (req,res,next)=>{
     });
 
 }
+
+//create user
+router.post("/customers",authenticateToken, async(req,res)=>{
+    let{custId,name,age,location} = req.body;
+
+    if(!custId){
+       custId = uuidv4();
+    }
+    try{
+        const existingCustomer = await Customer.findOne({custId})
+        if(existingCustomer){
+            return res.status(400).send({error: "Customer already exists"});
+        }
+        const customer = new Customer({custId,name,age,location})
+        await customer.save();
+        res.status(201).send(customer)
+    }
+    catch(error){
+        res.status(400).send(error);
+    }
+});

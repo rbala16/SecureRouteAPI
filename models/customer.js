@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const Customer = mongoose.model("Customer",{
-    customerId:{
+    custId:{
         type:String,
         required:true,
         unique:true,
