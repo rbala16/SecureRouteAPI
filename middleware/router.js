@@ -114,7 +114,7 @@ router.get("/customers/:id",authenticateToken,async(req,res)=>{
   try{
     const customer = await Customer.findById(_id);
     if(!customer){
-      return res.status(404).send();
+      return res.status(404).send({ message: 'No customer with that ID' });
     }
     res.send(customer);
   }
@@ -124,7 +124,40 @@ router.get("/customers/:id",authenticateToken,async(req,res)=>{
 })
 
 //delete cust data
-router.delete("/customers",authenticateToken,async(req,res)=>{
-  
+router.delete("/customers/:id",authenticateToken,async(req,res)=>{
+  //Get the ID from the route parameters
+  const _id = req.params.id;
+  try{
+    const result = await Customer.deleteOne({_id});
+    if (result.deletedCount === 0) {
+      // If no document was deleted, return a 404 response
+      return res.status(404).json({ message: 'No customer with that ID' });
+    }
+    res.send({ message: 'Customer deleted successfully' });
+  }
+  catch (e) {
+    // Return a 500 status code for server errors
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 })
+
+//update customer
+router.patch("/customers/:id",authenticateToken,async(req,res)=>{
+  const _id = req.params.id;
+  const updates = req.body; // The fields to be updated are sent in the request body
+  try{
+    const customer = await Customer.findByIdAndUpdate(_id,updates,{
+      new: true, // Return the updated document
+      runValidators: true // Validate the data before updating
+    });
+  
+    if(!customer){
+      return res.status(404).json({ message: "No customer with that ID" });
+    }
+    res.send(customer);
+  }
+  catch (e) {
+    res.status(400).json({ error: "Bad Request" }); // Handle validation errors or other issues
+  }
+  })
 module.exports = router;
