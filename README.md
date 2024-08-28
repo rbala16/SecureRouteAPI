@@ -44,7 +44,7 @@ node token_gen.js
 ```
 go to Postman and send Get request to :http://localhost:8080/generate-token <br>
 Grab that token and save it for later use
-Note:Token is valid for only 1 hour
+`Note`:Token is valid for only 1 hour
 
 3. Run the Application:<br>
 Run the following command at the terminal:
@@ -54,6 +54,17 @@ Run the following command at the terminal:
 ```
 
 5. Access the API: Open your Postman and go to: http://localhost:8080
+
+## Authentication
+* Token Generation:
+
+* Users must authenticate via JWT. Tokens should be included in the Authorization header of requests.
+```
+Authorization: Bearer <your_jwt_token>
+```
+## Testing
+- Use Postman to test the API endpoints.
+1 Ensure that you include authentication tokens where required.
 
 ## API Endpoints
 ### Customer Routes
@@ -65,6 +76,17 @@ Request Body: { "name": "Robert", "age:23,"location": "Toronto }
 Headers: Authorization: Bearer <token>
 
 * Get all customers:
+
+`GET /customers`
+Headers: Authorization: Bearer <token>
+
+* Get Customer by name ,age,location ,custId:
+
+`GET /customers?custId=<value>`
+`GET /customers?name=<value>`
+`GET /customers?name=<value>&age=<value>&location=<value>`
+`GET /customers?name=<value>&age=<value>`
+Headers: Authorization: Bearer <token>
 
 `GET /customers`
 Headers: Authorization: Bearer <token>
