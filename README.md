@@ -107,6 +107,6 @@ Headers: Authorization: Bearer <token>
 `DELETE /customers/:id`
 Headers: Authorization: Bearer <token>
 
-
-
+## Authors Notes:
+This README and accompanying repo have been brought to you by: Rajni bala
 
