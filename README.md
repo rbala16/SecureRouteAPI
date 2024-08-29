@@ -70,43 +70,41 @@ Authorization: Bearer <your_jwt_token>
 ### Customer Routes
 
 * Create Customer:
-
+```
 `POST /customers`
 Request Body: { "name": "Robert", "age:23,"location": "Toronto }
 Headers: Authorization: Bearer <token>
-
+```
 * Get all customers:
-
+```
 `GET /customers`
 Headers: Authorization: Bearer <token>
-
+```
 * Get Customer by name ,age,location ,custId:
-
+```
 `GET /customers?custId=<value>`
 `GET /customers?name=<value>`
 `GET /customers?name=<value>&age=<value>&location=<value>`
 `GET /customers?name=<value>&age=<value>`
 Headers: Authorization: Bearer <token>
-
-`GET /customers`
-Headers: Authorization: Bearer <token>
+```
 
 * Get Customer by ID:
-
+```
 `GET /customers/:id`
 Headers: Authorization: Bearer <token>
-
+```
 * Update Customer:
-
+```
 `PATCH /customers/:id`
 Request Body: { "name": "Robert", "age:24,"location": "Niagara falls" }
 Headers: Authorization: Bearer <token>
-
+```
 * Delete Customer:
-
+```
 `DELETE /customers/:id`
 Headers: Authorization: Bearer <token>
-
+```
 ## Authors Notes:
 This README and accompanying repo have been brought to you by: Rajni bala
 
